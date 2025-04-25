@@ -1,0 +1,131 @@
+:root {
+    /* 색상 */
+    --ibk-main-color: #0055a2;
+    --ibk-main-bg-color: #f0f2f6;
+    --ibk-text-color: #0d020f;
+    --ibk-secondary-color: #72808e;
+
+    /* 테두리 */
+    --border-radius: 4rem;
+}
+
+/* body */
+body {
+    line-height: 3rem;
+    color: var(--ibk-text-color);
+}
+
+.content-center {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2.2rem;
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+html {
+    font-size: 10px;
+}
+
+/* header */
+header {
+    box-shadow: 0 0 2rem 0 rgba(13, 14, 15, 0.04);
+    .content-center {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 8rem;
+
+        #mainNav{
+            > ul {
+                display: flex;
+                gap: 40px;
+                li {
+                    position: relative;
+
+                    a {
+                        display: block;
+                        font-size: 1.13em;
+                        font-weight: 600;
+                    }
+                    &:first-child {
+                        a {
+                            color: var(--ibk-main-color);
+                            font-weight: 700;
+                        }
+                    }
+                    .hm_sub {
+                        display: none;
+                        position: absolute;
+                        background: #fff;
+                        padding: 20px;
+                        left: 50%;
+                        min-width: 16rem;
+                        transform: translateX(-50%);
+                    }
+                }
+            }
+        }
+
+        .gnb-list {
+            display: flex;
+            gap: 10px;
+            li {
+                a {
+                    display: block;
+                    border-radius: var(--border-radius);
+                }
+                &:first-child {
+                    a {
+                        position: relative;
+                        background: var(--ibk-main-bg-color);
+                        padding: 0 20px 0 45px;
+                        color: var(--ibk-main-color);
+                        font-weight: 700;
+                        line-height: 4rem;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 20px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            display: block;
+                            width: 16px;
+                            height: 16px;
+                            background-image: url(../images/icon_line_b.svg);
+                            background-position: 100% -8rem;
+                            background-size: 1100%;
+                        }
+                    }
+                }
+                &:last-child {
+                    a {
+                        position: relative;
+                        text-indent: -9999px;
+                        width: 4rem;
+                        height: 4rem;
+
+                        &::after {
+                            content: "";
+                            display: block;
+                            width: 20px;
+                            height: 20px;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-image: url(../images/icon_line_w.svg);
+                            background-repeat: no-repeat;
+                            background-position: 40% -24rem;
+                            background-size: 1100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* main */
+/* footer */
