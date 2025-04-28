@@ -27,6 +27,14 @@ html {
     font-size: 10px;
 }
 
+/* skip */
+.skip-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
 /* header */
 header {
     box-shadow: 0 0 2rem 0 rgba(13, 14, 15, 0.04);
@@ -137,6 +145,7 @@ header {
             width: calc(100% / 3 * 2);
 
             .cm-slider-wrap {
+                position: relative;
                 background-color: pink;
                 border-radius: 5rem 5rem 5rem 10rem;
                 min-height: 500px;
@@ -180,20 +189,46 @@ header {
                         }
                     }
                 }
-                
+
                 .control-btn-wrap {
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     background: #fff;
                     border-radius: 0 3.5rem 0 0;
+                    width: 60%;
+                    height: 7rem;
                     display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .bar-wrap {
+                        .progress-bar {
+                            width: 12rem;
+                            height: 0.4rem;
+                            border-radius: 2rem;
+                            background: var(--ibk-secondary-color);
+                            .progress-bar {
+                                display: block;
+                                width: 10px;
+                                height: inherit;
+                                background: #0d020f;
+                            }
+                        }
+                    }
 
                     ul {
                         display: flex;
-                        width: 60%;
-                        height: 7rem;
                     }
+                }
+                .control-btn-wrap::before {
+                    content: "";
+                    position: absolute;
+                    bottom: -0.2rem;
+                    right: -4rem;
+                    display: block;
+                    width: 10rem;
+                    height: 7.2rem;
+                    background: url(../images/deco_banner.svg);
                 }
             }
         }
