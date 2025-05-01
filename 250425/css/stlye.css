@@ -24,11 +24,9 @@ body {
   background-color: rgba(255, 0, 0, 0.2);
 }
 
-
 html {
   font-size: 10px;
 }
-
 
 /* header */
 header {
@@ -136,14 +134,18 @@ header {
   .cm-top-wrap {
     display: flex;
     justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 7rem;
+
     .cm-top-left {
       width: calc(100% / 3 * 2);
 
       .cm-slider-wrap {
         position: relative;
-        background-color: pink;
+        background-color: skyblue;
         border-radius: 5rem 5rem 5rem 10rem;
         min-height: 500px;
+        height: 50rem;
 
         .cm-slider-list-text {
           height: 100%;
@@ -256,6 +258,92 @@ header {
       }
     }
   }
+  .cm-bottom-wrap {
+    .cm-info-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 3rem;
+
+      li {
+        a {
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: var(--ibk-main-bg-color);
+          padding: 3.5rem;
+          border-radius: 4rem;
+
+          strong {
+            font-size: 2.5rem;
+            color: var(--ibk-main-color);
+          }
+
+          .cm-more-btn {
+            width: 7.5rem;
+            height: 7.5rem;
+            background: green;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            i {
+              display: block;
+              width: 6rem;
+              height: 6rem;
+              background: black;
+              border-radius: 50%;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              z-index: 10;
+              transform: rotate(45deg);
+
+              &::after {
+                content: "";
+                display: block;
+                width: 2.8rem;
+                height: 2.8rem;
+                background-image: url(../images/icon_line_w.svg);
+                background-size: 1100%;
+                background-position: 0 -30.8rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+            }
+          }
+
+          .cm-more-btn::before,
+          .cm-more-btn::after {
+            content: "";
+            display: block;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            background-color: aqua;
+            position: absolute;
+            bottom: 7.5rem;
+            box-shadow: 4rem 4rem 0 0 red;
+          }
+
+          .cm-more-btn::after {
+            bottom: 0;
+            left: -8rem;
+            box-shadow: 4rem 4rem 0 0 blue;
+          }
+        }
+        &:first-child {
+          grid-row: 1/3;
+        }
+        &:last-child {
+          grid-row: 1/3;
+        }
+      }
+    }
+  }
 }
 
 /* footer */
@@ -363,6 +451,13 @@ footer {
 }
 
 @media screen and(max-width: 980px) {
+  .cm-wrap {
+    .cm-bottom-wrap {
+      .cm-info-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
   .footer-bottom {
     > div > div {
       display: block;
