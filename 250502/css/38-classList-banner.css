@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.main-slider-wrap {
+  max-width: 1260px;
+  height: 500px;
+  margin: 100px auto;
+}
+.main-slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.main-slider > li {
+  position: absolute;
+  font-size: 80px;
+  width: 100%;
+  height: inherit;
+  opacity: 0;
+  z-index: 0;
+}
+.main-slider > .slider1 {
+  background: dodgerblue;
+}
+.main-slider > .slider2 {
+  background: salmon;
+}
+.main-slider > .slider3 {
+  background: seagreen;
+}
+.main-slider > .active {
+  opacity: 1;
+  z-index: 100;
+}
+.pager {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.pager > li {
+}
+.pager > li > button {
+  border: none;
+  background: #ddd;
+  padding: 5px 20px;
+}
+.pager > .active button {
+  background: pink;
+}

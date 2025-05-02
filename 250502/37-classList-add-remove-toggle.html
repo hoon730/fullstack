@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        //
+        let addBtn = document.querySelector(".addBtn");
+        let removeBtn = document.querySelector("removeBtn");
+        let toggleBtn = document.querySelector(".toggleBtn");
+        let boxEl = document.querySelector(".box");
+
+        //addBtn 을 클릭하면 .bg클래스가 .box에 적용되도록
+        addBtn.addEventListener("click", () => {
+          boxEl.classList.add("bg");
+        });
+        //removeBtn을 클릭하면 .box에서 .bg클래스가 제거
+        removeBtn.addEventListener("click", () => {
+          boxEl.classList.remove("bg");
+        });
+
+        //togleBtn을 클릭하면 .bg클래스가 추가/제거
+        toggleBtn.addEventListener("click", () => {
+          toggleBtn.classList.toggle("bg");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>
