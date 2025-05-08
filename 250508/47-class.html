@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="carkind"></div>
+    <script>
+      class Car {
+        constructor(ukind, uname, year) {
+          this.ukind = ukind;
+          this.uname = uname;
+          this.year = year;
+        }
+      }
+
+      const myCar1 = new Car("승용차", "포드", 2025);
+      const myCar2 = new Car("스포츠카카", "산타페", 2000);
+
+      document.querySelector(".carkind").innerHTML = `${myCar1.uname}는 ${myCar1.ukind}이고, ${myCar1.year}년식입니다.`;
+    </script>
+  </body>
+</html>
