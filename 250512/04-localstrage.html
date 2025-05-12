@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //setItem
+      window.localStorage.setItem("uname", "홍길동");
+      window.localStorage.setItem("age", "30");
+
+      //removeItem 저장된 데이터 삭제
+      window.localStorage.removeItem("uname");
+
+      //데이터 가져오기
+      const name = window.localStorage.getItem("uname");
+      console.log(name);
+    </script>
+  </body>
+</html>
