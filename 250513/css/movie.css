@@ -33,11 +33,37 @@
 
   li {
     width: calc(20% - 30px);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .posterImg {
+      flex: 1;
+      border-radius: 20;
+      overflow: hidden;
+    }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .title {
+      display: flex;
+      justify-content: space-between;
+      strong {
+        font-size: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 80%;
+      }
+      span {
+      }
     }
   }
 }
