@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import FunComProps4 from "./basic-components/FunComProps4";
+import ClassComProps5 from "./basic-components/ClassComProps5";
+import FunComProps6 from "./basic-components/FunComProps6"; 
+import ComCombine7 from "./basic-components/ComCombine7";
+
+interface User {
+  name: string;
+  age: number;
+  imgUrl: string;
+  imgSize: number;
+}
+
+const user: User = {
+  name: "전우진",
+  age: 13,
+  imgUrl: "./images/7.png",
+  imgSize: 100,
+};
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>props</h1>
+      <FunComProps4 uname="전우진" uage={13} />
+      <ClassComProps5 day="금요일" num={2} />
+      <FunComProps6 name={user.name} age={user.age} imgUrl={user.imgUrl} imgSize={user.imgSize} />
+      <ComCombine7 />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
