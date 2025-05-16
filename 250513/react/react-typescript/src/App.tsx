@@ -24,9 +24,9 @@ function App() {
     <>
       <h1>props</h1>
       <FunComProps4 uname="전우진" uage={13} />
-      <ClassComProps5 day="금요일" num={2} />
+      {/* <ClassComProps5 day="금요일" num={2} />
       <FunComProps6 name={user.name} age={user.age} imgUrl={user.imgUrl} imgSize={user.imgSize} />
-      <ComCombine7 />
+      <ComCombine7 /> */}
     </>
   );
 }

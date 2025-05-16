@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.background {
+  .pink {
+    background: pink;
+  }
+  .skyblue {
+    background: skyblue;
+  }
+}
+
+.card-list {
+  display: flex;
+  li {
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 20px;
+  }
+}
