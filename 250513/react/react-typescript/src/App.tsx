@@ -1,9 +1,10 @@
 import "./App.css";
 import FunComProps4 from "./basic-components/FunComProps4";
 import ClassComProps5 from "./basic-components/ClassComProps5";
-import FunComProps6 from "./basic-components/FunComProps6"; 
+import FunComProps6 from "./basic-components/FunComProps6";
 import ComCombine7 from "./basic-components/ComCombine7";
-
+import Event16 from "./basic-components/Event16";
+import EventChild17 from "./basic-components/EventChild17";
 interface User {
   name: string;
   age: number;
@@ -19,7 +20,6 @@ const user: User = {
 };
 
 function App() {
-
   return (
     <>
       <h1>props</h1>
@@ -27,6 +27,8 @@ function App() {
       {/* <ClassComProps5 day="금요일" num={2} />
       <FunComProps6 name={user.name} age={user.age} imgUrl={user.imgUrl} imgSize={user.imgSize} />
       <ComCombine7 /> */}
+      <Event16 />
+      <EventChild17 />
     </>
   );
 }

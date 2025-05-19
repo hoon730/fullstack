@@ -10,6 +10,6 @@ const peoples = [
 
 export default function List13() {
   // 상태변수
-  const listItems = people.map((item) => <li>{item}</li>);
+  const listItems = peoples.map((item) => <li>{item}</li>);
   return <ul>{listItems}</ul>;
 }

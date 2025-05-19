@@ -9,6 +9,14 @@ import FunComProps6 from "./basic-components/FunComProps6";
 import ComCombine7 from "./basic-components/ComCombine7";
 import ComConditionClass from "./basic-components/ComConditionClass";
 import ComCondition1 from "./basic-components/ComCondition1";
+import List13 from "./basic-components/List13";
+import Event16 from "./basic-components/Event16";
+import EventChild17 from "./basic-components/EventChild17";
+import EventBubble18 from "./basic-components/EventBubble18";
+import EventMulti19 from "./basic-components/EventMulti19";
+import StateClass20 from "./basic-components/StateClass20";
+import StateFunCounter21 from "./basic-components/StateFunCounter21";
+import StateDark22 from "./basic-components/StateDark22";
 const user = {
   name: "전우진",
   age: 13,
@@ -36,11 +44,21 @@ function App() {
       <ComCombine7 />
       /> */}
       <h1>조건부 렌더링</h1>
-      <ComConditionClass />
+      {/* <ComConditionClass />
       <ComCondition1 isTrue={true} colorPink="pink" colorSky="skyblue" />
 
       <h1>라스트 렌더링</h1>
-      <List13 />
+      <List13 /> */}
+      <h1>이벤트 핸들링</h1>
+      <Event16 />
+      <EventChild17 />
+      <EventBubble18 />
+      <EventMulti19 />
+      <h1>class 상태</h1>
+      <StateClass20 />
+      <StateFunCounter21 />
+      <h1>함수 상태</h1>
+      <StateDark22 />
     </div>
   );
 }
