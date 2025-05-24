@@ -17,6 +17,14 @@ import EventMulti19 from "./basic-components/EventMulti19";
 import StateClass20 from "./basic-components/StateClass20";
 import StateFunCounter21 from "./basic-components/StateFunCounter21";
 import StateDark22 from "./basic-components/StateDark22";
+import StateParentColor27 from "./basic-components/StateParentColor27";
+import StateUpFilter28 from "./basic-components/StateUpFilter28";
+import UserEffect32 from "./basic-components/UserEffect32";
+import UseEffectapi33 from "./basic-components/UseEffectapi33";
+import UseEffect33 from "./basic-components/UseEffect33";
+import UseEffectClean from "./basic-components/UseEffectClean";
+import UseEffect34 from "./basic-components/UseEffect34";
+import UseRef from "./basic-components/UseRef";
 const user = {
   name: "전우진",
   age: 13,
@@ -29,9 +37,9 @@ function App() {
 
   return (
     <div className="App">
-      <FunCom1 />
+      {/* <FunCom1 />
       <FunComImg2 />
-      <ClassCom3 />
+      <ClassCom3 /> */}
       <h1>props 전달</h1>
       {/* <FunComProps4 name="전우진" userAge={13} />
       <ClassFunCom5 day="목" hours={12} /> */}
@@ -50,15 +58,25 @@ function App() {
       <h1>라스트 렌더링</h1>
       <List13 /> */}
       <h1>이벤트 핸들링</h1>
-      <Event16 />
+      {/* <Event16 />
       <EventChild17 />
       <EventBubble18 />
-      <EventMulti19 />
+      <EventMulti19 /> */}
       <h1>class 상태</h1>
-      <StateClass20 />
-      <StateFunCounter21 />
+      {/* <StateClass20 />
+      <StateFunCounter21 /> */}
       <h1>함수 상태</h1>
-      <StateDark22 />
+      {/* <StateDark22 /> */}
+      <h1>상태 상향</h1>
+      {/* <StateParentColor27 /> */}
+      {/* <StateUpFilter28 /> */}
+      <h1>useEffect</h1>
+      {/* <UserEffect32 />
+      <UseEffectapi33 />
+      <UseEffect33 /> */}
+      <h1>useRef</h1>
+      <UseEffect34 />
+      <UseRef />
     </div>
   );
 }
