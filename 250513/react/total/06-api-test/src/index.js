@@ -4,12 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import WeatherProvider from "./context/WeatherProvider";
+import { CounterProvider } from "./components/CounterContext";
+import { RecoilRoot } from "recoil";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <WeatherProvider>
-    <App />
-  </WeatherProvider>
+  <RecoilRoot>
+    <CounterProvider>
+      <WeatherProvider>
+        <App />
+      </WeatherProvider>
+    </CounterProvider>
+  </RecoilRoot>
 );
 
 // If you want to start measuring performance in your app, pass a function
