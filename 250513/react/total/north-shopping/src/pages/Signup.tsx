@@ -1,11 +1,12 @@
 import React from 'react'
+import Title from '../components/Title'
 
-const Singup = () => {
+const Signup = () => {
   return (
-    <div className="container">
+    <div className='container'>
       회원가입
     </div>
   )
 }
 
-export default Singup
+export default Signup

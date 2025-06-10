@@ -2,18 +2,18 @@ import React from "react";
 import Title from "../components/Title";
 import CategoryPage from "../components/CategoryPage";
 
-const Man = () => {
+const Women = () => {
   return (
     <div className="container">
       <div>
-        <img src="./images/man-sub-banner.jpg" alt="" />
+        <img src="./images/women-sub-banner.jpg" alt="" />
       </div>
       <div className="content-inner">
-        <Title title="남자" />
-        <CategoryPage categoryName="men's clothing" />
+        <Title title="여자" />
+        <CategoryPage categoryName="women's clothing" />
       </div>
     </div>
   );
 };
 
-export default Man;
+export default Women;

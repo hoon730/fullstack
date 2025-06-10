@@ -1,11 +1,14 @@
 $메인색: #141414;
-$서브색: #aa2d2d;
+$강조색: #e60023;
 $섹션제목: 2.5rem;
 $섹션부제목: 1.25rem;
 
 @mixin myFlex($jc: space-between, $gap: null, $ai: center) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $gap;
 }
-
 .content-inner {
   max-width: 1600px;
   margin: 0 auto;
@@ -13,12 +16,30 @@ $섹션부제목: 1.25rem;
 }
 
 .container {
-  padding: 100px 0;
+  padding: 90px 0;
 
   .title-box {
     .title {
     }
     .sub-title {
+    }
+  }
+
+  .btn {
+    @include myFlex($gap: 10px);
+    button {
+      display: block;
+      padding: 10px 30px;
+      border: 1px solid black;
+    }
+
+    .white-btn {
+      border: 1px solid #ccc;
+    }
+
+    .black-btn {
+      background: black;
+      color: white;
     }
   }
 }

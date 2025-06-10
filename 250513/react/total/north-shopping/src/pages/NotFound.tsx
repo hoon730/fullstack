@@ -1,11 +1,12 @@
 import React from 'react'
+import Title from '../components/Title'
 
-const NotFound = () => {
+const Notfound = () => {
   return (
-    <div className="container">
-      404
+    <div className='container'>
+      페이지 없음
     </div>
   )
 }
 
-export default NotFound
+export default Notfound
