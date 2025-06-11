@@ -10,11 +10,12 @@ import Man from './pages/Man';
 import Women from './pages/Women';
 import Jewelery from './pages/Jewelery';
 import Electric from './pages/Electric';
+import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Cart from './pages/Cart';
 import ProductDetail from './pages/ProductDetail';
-import NotFound from './pages/NotFound';
+import Member from './pages/Member';
 
 function App() {
   return (
@@ -27,12 +28,13 @@ function App() {
           <Route path="/women" element={<Women />} />
           <Route path="/jewelery" element={<Jewelery />} />
           <Route path="/electric" element={<Electric />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/product/:id" element={<ProductDetail/>}/>
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="*" element={<NotFound />} />
 
-          <Route path="/login" element={<Login />}/>
-          <Route path="/signup" element={<Signup />}/>
-          <Route path="/cart" element={<Cart />}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/member" element={<Member />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
       <Footer />

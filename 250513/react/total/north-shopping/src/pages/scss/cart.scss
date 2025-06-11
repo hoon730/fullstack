@@ -1,10 +1,12 @@
 @use "../../App.scss" as g;
 
 .cart-wrap {
-  border-top: 2px solid black;
+  border-top: 5px solid black;
+
   > div {
-    @include g.myFlex($gap: 20px);
+    @include g.myFlex();
     border-bottom: 1px solid #ccc;
+
     &.cart-title {
       line-height: 3;
       padding: 0 20px;
@@ -21,9 +23,14 @@
         }
       }
     }
+
     .cart-right {
       @include g.myFlex($gap: 10px);
       flex: 1;
+    }
+
+    &.cart-list-wrap {
+      display: block;
     }
 
     ul {
@@ -32,6 +39,10 @@
         border-bottom: 1px solid #ccc;
         @include g.myFlex($gap: 10px);
       }
+    }
+
+    &.cart-bottom {
+      padding: 20px;
     }
   }
 }

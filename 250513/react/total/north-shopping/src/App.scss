@@ -32,14 +32,31 @@ $섹션부제목: 1.25rem;
       padding: 10px 30px;
       border: 1px solid black;
     }
-
     .white-btn {
       border: 1px solid #ccc;
     }
-
     .black-btn {
       background: black;
       color: white;
     }
+  }
+}
+
+// swiper
+.swiper {
+  padding-bottom: 30px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  z-index: 100;
+}
+
+.goods-list-big {
+  @include myFlex();
+  .big-img {
+    width: 45%;
+  }
+  .big-swiper {
+    width: 50%;
   }
 }

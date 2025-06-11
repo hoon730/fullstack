@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./scss/header.scss";
-import { useStore } from "../store/useStore";
+import { useCartStore } from "../store/useStore";
+import "./scss/form.scss";
 type MenuItem = {
   key: string;
   label: string;
@@ -13,8 +14,12 @@ const menus: MenuItem[] = [
   { key: "electric", label: "전자제품" },
 ];
 const Header = () => {
-  const { cartCount } = useStore();
+  const { cartCount, currentUser, logout } = useCartStore();
 
+  const username = currentUser?.includes("@")
+    ? currentUser.split("@")[0]
+    : currentUser;
+    
   return (
     <header>
       <div className="content-inner">
@@ -36,18 +41,37 @@ const Header = () => {
         </div>
         <div className="header-right">
           <ul>
-            <li>
-              <Link to="/login">
-                <img src="./images/loginPassword.png" />
-                <p>LOGIN</p>
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup">
-                <img src="./images/loginMember.png" />
-                <p>MEMBER</p>
-              </Link>
-            </li>
+            {currentUser ? (
+              <>
+                <li>
+                  <Link to="/login" onClick={logout}>
+                    <img src="./images/loginPassword.png" />
+                    <p>LOGOUT</p>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup">
+                    <img src="./images/loginMember.png" />
+                    <p>MEMBER</p>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login">
+                    <img src="./images/loginPassword.png" />
+                    <p>LOGIN</p>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup">
+                    <img src="./images/loginMember.png" />
+                    <p>MEMBER</p>
+                  </Link>
+                </li>
+              </>
+            )}
             <li>
               <Link to="/cart">
                 <img src="./images/cart.png" alt="" />
