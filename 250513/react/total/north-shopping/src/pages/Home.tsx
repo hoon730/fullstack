@@ -23,7 +23,7 @@ const Home = () => {
               title="화이트라벨로 가볍게 입는 여름"
               subTitle="WHITE LABEL SUMMER COLLECTION"
             />
-            <CategoryBigPage categoryName="" />
+            <CategoryBigPage categoryName="white" imgUrl="white" />
           </section>
         </div>
       </div>

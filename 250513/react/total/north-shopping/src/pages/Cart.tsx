@@ -5,7 +5,6 @@ import "./scss/cart.scss";
 
 const Cart = () => {
   const { cartItems, removeCart, totalPrice } = useCartStore();
-  // const { cartCount } = useCartStore();
 
   return (
     <div className='container'>
@@ -18,8 +17,9 @@ const Cart = () => {
               <span>제품명</span>
             </div>
             <div className='cart-right'>
-              <p>가격</p>
-              <p>옵션</p>
+              <p><button>-</button><button>+</button></p>
+              <div className='btn'><button onClick={() => removeCart(cartItems.id)}>
+                삭제</button></div>
             </div>
           </div>
           <div className="cart-list-wrap">
