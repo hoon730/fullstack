@@ -1,0 +1,50 @@
+create user 'ezen'@'%'
+
+identified by '1234'
+
+create user 'ezen'@'localhost' idenified by '1234';
+
+grant all on eduDB.* to 'ezen'@'%';
+flush previleges;
+
+grant all on eduDB.* to 'ezen'@'localhost';
+flush previleges
+
+권한 조회
+show grants for 'ezen'@'localhost';
+
+현재 유저 확인
+select user(), current_user();
+quit
+
+------------------------------------------------
+
+이젠 ezen으로 접속해보자
+mysql -u ezen  -p
+1234
+select user(), current_user();
+
+use eduDB;
+DBMS : MySQL, Oracle, MS Server, H2 ==> 관계형 데이터베이스
+		NoSQL => MongoDB
+데이터베이스명: eduDB
+테이블(여러 개의 컬럼을 갖는 레코드들로 구성)
+DB설계
+테이블 구성
+
+회원 ---포스트에 글을쓴다--- 포스트(게시판)
+id (PK)				id
+name					title
+email (Unique)			cotent
+...					writer (FK) ===> members테이블의 email을 레퍼런스
+
+DDL (Data Definition Language) => create, drop, alter, ...
+create table if not exists members(
+	id int auto_increment primary key, -- 회원번호
+	name varchar(50) not null,
+	email varchar(100) unique not null,
+	passwd varchar(100) not null,
+	role varchar(20) default 'USER', -- USER, ADMIN
+	indate datetime default current_timestamp,
+	refreshtoken varchar(255)
+);
