@@ -35,4 +35,6 @@ router.get("/:id", postController.viewPost);
 
 router.delete("/:id", postController.deletePost);
 
+router.put("/:id", upMulter.single("file"), postController.updataPost);
+
 module.exports = router;

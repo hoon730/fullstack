@@ -25,9 +25,10 @@ const PostView = () => {
 
     const result = await deletePost(id);
     if (result) {
-      alert("삭제 성공");
+      // alert("삭제 성공");
+      navigate("/posts")
     } else {
-      alert("삭제 실패");
+      alert("삭제 실패 - 해당 글이 존재하지 않습니다.");
     }
   };
 
@@ -49,7 +50,7 @@ const PostView = () => {
 
           <div className="card">
             <div className="card-body">
-              <h5>[게시글번호] 게시글제목</h5>
+              <h5>[게시글번호] {post.title}</h5>
               <hr />
               <div style={{ marginBottom: "1rem" }} className="text-center">
                 <img

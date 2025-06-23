@@ -6,14 +6,30 @@ const PostList = () => {
   const fetchPostList = usePostStore((s) => s.fetchPostList);
   const postList = usePostStore((s) => s.postList);
   const totalCount = usePostStore((s) => s.totalCount);
+  const totalPages = usePostStore((s) => s.totalPages);
+  const page = usePostStore((s) => s.page);
+  const setPage = usePostStore((s) => s.setPage);
 
   useEffect(() => {
     fetchPostList();
-  }, []);
+  }, [page]);
+  const pageBlock = 5;
+  const startPage = Math.floor((page - 1) / pageBlock) * pageBlock + 1;
+  const endPage = startPage + (pageBlock - 1);
+
+  /*
+   * 페이지 블럭 처리 위한 연산
+   *  Prev [1][2][3][4][5] Next | Prev [6][7][8][9][10] Next | Prev [11][12][13][14][15] Next
+   *
+   * startPage = Math.floor((page-1) / pageBlock ) * pageBlock + 1
+   * endPage = startPage + (pageBlock - 1)
+   */
 
   return (
     <div className="post-list">
-      <h3>총 게시글 수: {totalCount} 개</h3>
+      <h3>
+        총 게시글 수: {totalCount} 개 {page} page/ {totalPages} pages
+      </h3>
       {postList.map((post, index) => (
         <div
           className="d-flex my-3 p-3"
@@ -24,7 +40,7 @@ const PostList = () => {
             <img
               src={
                 post.file
-                  ? `http://localhost:7777/uploads${post.file}`
+                  ? `http://localhost:7777/uploads/${post.file}`
                   : `http://localhost:7777/images/noimage.png`
               }
               alt={post.title}
@@ -46,7 +62,40 @@ const PostList = () => {
         </div>
       ))}
       {/* {페이지 네비게이션 자리 ---------} */}
-      <div></div>
+      <div className="text-center">
+        {startPage > 1 && (
+          <button
+            className="btn btn-outline-primary mx-1"
+            onClick={() => setPage(startPage - 1)}
+          >
+            prev
+          </button>
+        )}
+
+        {Array.from(
+          { length: endPage - startPage + 1 },
+          (_, i) => i + startPage
+        ).map((n) => (
+          <button
+            key={n}
+            className={`btn ${
+              page === n ? "btn-primary" : "btn-outline-primary"
+            } mx-1`}
+            onClick={() => setPage(n)}
+          >
+            {n}
+          </button>
+        ))}
+
+        {endPage < totalPages && (
+          <button
+            className="btn btn-outline-primary mx-1"
+            onClick={() => setPage(endPage + 1)}
+          >
+            next
+          </button>
+        )}
+      </div>
     </div>
   );
 };

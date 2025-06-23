@@ -7,14 +7,16 @@ import axiosInstance from "./axiosInstance";
 export interface PostResponse {
   data: Post[];
   totalCount: number;
-  //totalPages: number;
+  totalPages: number;
 }
 
 //----post 목록 가져오기-----
-export const apiFetchPostList = async (): Promise<PostResponse> => {
-  const response = await axiosInstance.get("/posts");
+export const apiFetchPostList = async (
+  page: number = 1
+): Promise<PostResponse> => {
+  const response = await axiosInstance.get("/posts", { params: { page } });
   //reponse.data.data ==> 글목록
-  //reponse.data.totalCount ==> 게시글수
+  //reponse.data.totalCount ==> 게시글수,
   return response.data;
 };
 // --- post 새글 등록하기------------
@@ -36,6 +38,16 @@ export const apiFetchPostById = async (id: string): Promise<Post | null> => {
   } else {
     return null;
   }
+};
+
+// 글 수정-----------------------
+export const apiUpdatePost = async (
+  formData: FormData,
+  id: string
+): Promise<void> => {
+  await axiosInstance.put(`/posts/${id}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
 };
 
 // 글 삭제 --------------------------

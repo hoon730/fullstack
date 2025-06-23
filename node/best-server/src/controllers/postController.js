@@ -41,20 +41,29 @@ exports.createPost = async (req, res) => {
 //모든 포스트 목록 조회
 exports.listPost = async (req, res) => {
   try {
+    const size = 3; // 한 페이지 당 보여줄 목록 개수
+    const page = parseInt(req.query.page) || 1; // 현재 보여줄 페이지 번호
+    const offset = (page - 1) * size; // 현재 페이지에 해당하는 데이터의 시작 인덱스
+
     //1. 전체 게시글 수 가져오기
     const query = `select count(id) as count from posts`;
     const [[{ count }]] = await pool.query(query);
     console.log("count: ", count);
 
+    //1_2. 총 페이지 수 (totalPages) 구하기
+    const totalPages = Math.ceil(count / size);
+
+    // 2. 전체 게시목록 가져오기 (현재 보여줄 페이지번호에 해당하는 데이터만 끊어서 가져오기)
     //2. 전체 게시목록 가져오기
     const sql = `select id, title, content, writer, attach file, date_format(wdate, '%Y-%m-%d') as wdate
-        from posts order by id desc
+        from posts order by id desc limit ? offset ?
     `;
-    const [posts] = await pool.query(sql);
+    const [posts] = await pool.query(sql, [size, offset]);
     // console.log(posts);
     res.json({
       data: posts,
       totalCount: count,
+      totalPages,
     });
   } catch (error) {
     console.log(error);
@@ -97,7 +106,14 @@ exports.deletePost = async (req, res) => {
     const post = result[0];
     let filePath = "";
     if (post.file) {
-      filePath = path.join(__dirname, "..", "..", "public", "uploads");
+      filePath = path.join(
+        __dirname,
+        "..",
+        "..",
+        "public",
+        "uploads",
+        post.file
+      );
       console.log("filePath: ", filePath);
     }
     // 2. DB에서 해당 글 삭제
@@ -117,3 +133,59 @@ exports.deletePost = async (req, res) => {
     res.status(500).json({ message: `Server Error : ${error.message}` });
   }
 }; // deletePost()----------------------------
+
+exports.updataPost = async (req, res) => {
+  try {
+    // 글 번호: id => req.params.id
+    const { id } = req.params;
+    // 글 내용: writer, title, ... => req.body
+    const { writer, title, content } = req.body;
+    // 첨부 파일:
+    const file = req.file; // 새로 수정처리할 첨부파일
+    const fileName = file?.filename;
+
+    const sql1 = "select attach as file from posts where id=?";
+    const [result1] = await pool.query(sql1, [id]);
+    if (result1.length === 0) {
+      return req.status(404).json({ message: "해당 글은 없어요" });
+    }
+    const post = result1[0];
+    let filePath = "";
+    if (post.file) {
+      //예전 첨부한 파일이 있다면
+      filePath = path.join(
+        __dirname,
+        "..",
+        "..",
+        "public",
+        "uploads",
+        post.file
+      );
+    }
+
+    const params = [writer, title, content]; // ? :인 파라미터값 들을 저장할 배열
+
+    let sql2 = "update posts set writer=?, title=?, content=?";
+
+    if (file) {
+      sql2 += `, attach=?  `;
+      params.push(fileName);
+    }
+    sql2 += `where id=?`;
+    params.push(id);
+    console.log("sql2: ", sql2);
+    const [result2] = await pool.query(sql2, params);
+
+    if (result2.affectedRows === 0) {
+      return res.status(404).json({ message: "해당 글은 없습니다다" });
+    }
+
+    if (result1.length > 0 && fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath); // 기존 첨부파일은 삭제 처리
+    }
+    res.status(200).json({ message: "Post글 수정 완료" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: `Server Error : ${error.message}` });
+  }
+}; //updatePost()------------------------------
