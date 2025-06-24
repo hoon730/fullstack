@@ -8,6 +8,7 @@ const cors = require("cors");
 const indexRouter = require("./src/routes/indexRouter");
 const postRouter = require("./src/routes/postRouter");
 const userRouter = require("./src/routes/userRouter");
+const adminRouter = require("./src/routes/adminRouter");
 
 const port = process.env.PORT || 7777;
 
@@ -24,6 +25,7 @@ app.use(cors()); //cors 미들웨어 설정 예정
 app.use("/", indexRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
+app.use("/api/admin", adminRouter); //관리자 여부를 체크하는 미들웨어 설정정
 
 //서버가동
 app.listen(port, () => {

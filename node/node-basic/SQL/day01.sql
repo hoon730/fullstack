@@ -172,5 +172,13 @@ having count(id) >=3;
 
 use eduDB;
 select * from posts order by id desc;
-select id, title, content, writer, attach, data_format(wdate, "%-Y-%m-%d"
+select id, title, content, writer, attach, date_format(wdate, "%-Y-%m-%d")
 from posts order by id desc;
+
+select id, title, content, writer, attach as file
+from posts order by id desc limit 3 offset 0;
+
+use eduDB;
+select * from members order by id desc;
+delete from members where id < 6;
+select id from members where email="toondra@gmail.com"

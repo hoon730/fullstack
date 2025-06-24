@@ -1,7 +1,12 @@
 import { Stack, Button, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Side: React.FC = () => {
+interface SideProps {
+  show: boolean;
+  setShowLogin: (show: boolean) => void;
+}
+
+const Side: React.FC<SideProps> = ({ show, setShowLogin }) => {
   return (
     <Stack gap={2} className="mx-auto w-100">
       <Button variant="primary" as={Link as any} to="/">
@@ -15,7 +20,9 @@ const Side: React.FC = () => {
 
       <Button variant="outline-success">Logout</Button>
 
-      <Button variant="outline-success">SignIn</Button>
+      <Button variant="outline-success" onClick={() => setShowLogin(true)}>
+        SignIn
+      </Button>
 
       <Button variant="outline-danger">인증 테스트</Button>
 

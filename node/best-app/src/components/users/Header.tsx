@@ -22,10 +22,10 @@ const Header: React.FC = () => {
               SingUp
             </Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown title="Admin 관리" id="collapsible-nav-dropdown">
+              <NavDropdown.Item as={Link} to={`/admin/users`}>회원 관리</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+                상품 관리
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
