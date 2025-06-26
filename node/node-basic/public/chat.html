@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chat-public</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      /* 전체 컨테이너 스타일 */
+      .chat-container {
+        width: 70%;
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 800px;
+      }
+
+      /* 제목 스타일 */
+      .chat-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+      }
+
+      /* 메시지 입력 영역 */
+      .input-section {
+        margin-bottom: 20px;
+      }
+
+      .message-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+        margin-bottom: 10px;
+      }
+
+      .message-input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      }
+
+      .send-button {
+        padding: 12px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .send-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 메시지 표시 영역 */
+      .message-area {
+        width: 100%;
+        height: 500px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #f8f9fa;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .message-area::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .message-area::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .message-area::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+      }
+
+      .message-area::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 768px) {
+        .chat-container {
+          width: 95%;
+          padding: 10px;
+        }
+
+        .message-area {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chat-container {
+          width: 100%;
+          padding: 5px;
+        }
+
+        .message-area {
+          height: 350px;
+        }
+
+        .message-input {
+          font-size: 14px;
+          padding: 10px 12px;
+        }
+      }
+    </style>
+
+    <script>
+      //   let socket = io("http://localhost:5555");
+      window.onload = () => {
+        const txt = document.querySelector("#txt");
+        const btn = document.querySelector("#btnSend");
+        const divMsg = document.querySelector("#msg");
+
+        socket = io.connect();
+        socket.on("connect", () => {
+          console.log("채팅 서버와 연결됨...");
+        });
+
+        btn.addEventListener("click", function () {
+          // txt에 입력한 값 얻어와서 서버쪽에 메세지 보낸다
+          let sendMsg = txt.value;
+          // 이벤트를 발생시켜서 서버쪽에 메세지 보낸다
+          //socket.emit("이벤트 종류", 데이터)
+          // 이벤트를 받을 때는 on ("이벤트", 핸들러함수)
+          send(sendMsg);
+          txt.value = "";
+          txt.focus();
+        });
+        function send(str) {
+          if (str.trim() !== "") {
+            divMsg.innerHTML += `<p style='color: #007bff; text-align: right; margin: 5px 0;'><strong>나:</strong> ${str}</p>`;
+            divMsg.scrollTop = divMsg.scrollHeight;
+          }
+          // 서버에 메시지 전송
+          socket.emit("echo", str);
+        }
+
+        txt.addEventListener("keyup", function (e) {
+          if (e.key === "Enter") {
+            let sendMsg = txt.value;
+            send(sendMsg);
+            txt.value = "";
+            txt.focus();
+          }
+        });
+
+        // 서버가 보내오는 메세지를 듣자
+        divMsg.innerHTML = "";
+        socket.on("sendAll", (data) => {
+          divMsg.innerHTML = data + "<br/>";
+          divMsg.style.color = "blue";
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div class="chat-container">
+      <h1 class="chat-title">Simple Chat - public</h1>
+      <div class="input-section">
+        <input
+          type="text"
+          id="txt"
+          class="message-input"
+          autofocus
+          placeholder="메시지를 입력하세요..."
+        />
+        <button id="btnSend" class="btn btn-success send-button">전송</button>
+      </div>
+      <div class="message-area" id="msg">
+        <!-- 채팅 대화내용이 여기에 보여짐 -->
+      </div>
+    </div>
+  </body>
+</html>
