@@ -2,7 +2,7 @@
 //Product 모델 정의
 module.exports = (sequelize, DataTypes)=>{
     const newProduct = sequelize.define(
-        //Product 모델 정의
+        //Product 모델 정의  Model 를 확장한 Product모델을 정의
         'Product',{
             id:{
                 type: DataTypes.INTEGER,

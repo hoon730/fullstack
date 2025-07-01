@@ -18,6 +18,7 @@ exports.createProduct = async(req, res)=>{
     }
 }//-----------------------------------
 
+//전체 상품 가져오기 (최신순/가격 낮은순/가격 높은순)
 //GET /api/products?order=idDESC (?order=priceASC)
 exports.listProduct = async(req,res)=>{
     try {
@@ -47,6 +48,34 @@ exports.listProduct = async(req,res)=>{
         res.status(500).json({message:error.message})
     }
 }//----------------------------------- 
+
+// 스펙별 상품 가져오기 (hit,best상품 가져오기)
+//GET /api/products/spec?spec=best,/api/products/spec?spec=hit
+exports.getProductBySpec = async (req,res)=>{
+    const spec = req.query.spec||'normal';
+    console.log('spec**********',spec);
+    
+    try {
+        //findAll()=>where조건
+        const products = await Product.findAll({
+            attributes:['id','name','price','image_url','spec'],
+            where: {spec},
+            order:[['id','DESC']],
+            limit: 4
+        })
+        console.log('products************',products);
+        
+        res.json(products)
+
+    } catch (error) {
+        console.error('스펙별 상품 조회 에러: ',error);
+        res.status(500).json({message:'서버 오류'})
+    }
+
+}//--------------------------------------------
+
+
+
 //api/products/1
 exports.getProduct = async (req,res)=>{
     try {
